@@ -1,7 +1,7 @@
 const topBlock = document.querySelector(".top_block");
 const bottomBlock = document.querySelector(".bottom_block");
 
-fetch('https://api.openweathermap.org/data/2.5/forecast?q=Minsk&units=metric&appid=a94d0a5ac08570add4b47b8da933f247')
+fetch('https://api.openweathermap.org/data/2.5/forecast?q=Polatsk&units=metric&appid=a94d0a5ac08570add4b47b8da933f247')
 .then((response) =>  response.json())
 .then((data) =>   {const currentWeather = data.list[0];
 
