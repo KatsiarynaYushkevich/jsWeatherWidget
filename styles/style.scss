@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 $main_text_color: #fff;
 $sub_text_color: #333333;
-$main_font_family: Montserrat;
+$main_font_family: Roboto;
 
 @mixin main_text_style(
   $f_size: 20px,
@@ -15,71 +16,75 @@ $main_font_family: Montserrat;
   font-weight: $f_weight;
 }
 
-@mixin flex_container($f_direction){
-    display: flex;
-    flex-direction: $f_direction;
+@mixin flex_container($f_direction) {
+  display: flex;
+  flex-direction: $f_direction;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.top_block{
-    margin: auto;
-    margin-top: 25px;
-    padding: 20px;
-    background-color: #6b97ca;
+.top_block {
+  margin: auto;
+  margin-top: 25px;
+  padding: 10px;
+  background-color: #6b97ca;
+  @include flex_container(column);
+  @include main_text_style(16px, 400);
+  width: 450px;
+}
+
+.city_time {
+  @include flex_container(column);
+  row-gap: 5px;
+}
+
+.weather {
+  @include flex_container(column);
+  row-gap: 5px;
+  align-items: center;
+
+  img {
+    max-width: 50px;
+  }
+}
+
+.wind_speed {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px 0px 20px;
+}
+
+.bottom_block {
+  margin: auto;
+
+  width: 450px;
+  min-height: 20px;
+}
+
+.past_weather {
+  padding: 10px 30px 10px 30px;
+  display: flex;
+  justify-content: space-between;
+
+  border: 1px solid #6b97ca;
+  @include main_text_style(16px, 400, $sub_text_color);
+
+  p {
     @include flex_container(column);
-    @include main_text_style(16px, 400);
-    width: 500px;
-    min-height: 20px;
+    row-gap: 3px;
+  }
+
+  img {
+    max-width: 50px;
+    margin-right: 45px;
+  }
 }
 
-.city_time{
+.date_time{
     @include flex_container(column);
-    row-gap: 5px;
-}
-
-.weather{
-    @include flex_container(column);
-    row-gap: 5px;
-   align-items: center;
-    
-    img{
-        max-width: 50px;
-    }
-}
-
-.wind_speed{
-    display: flex;
-   justify-content: space-between;
-}
-
-.bottom_block{
-    margin: auto;
- 
-    width: 500px;
-    min-height: 20px;
-}
-
-.past_weather{
-    padding: 20px;
-    display: flex;
-  align-items : center;
-     justify-content: space-between;
-    padding: 20px;
-    border: 1px solid #6b97ca;
-    @include main_text_style(16px, 400, $sub_text_color);
-
-
-    p{
-        @include flex_container(column);
-        row-gap: 3px;
-    }
-
-    img{
-        max-width: 50px;
-    }
+    row-gap: 3px;
 }

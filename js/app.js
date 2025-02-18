@@ -7,21 +7,21 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?q=Minsk&units=metric&app
 
 const iconCode = currentWeather.weather[0].icon;
 const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-console.log(currentWeather);
 
 addWeather();
 
 function addWeather(){
-    let date = new Date(currentWeather.dt * 1000).toLocaleDateString('ru-RU');
+    let currentTime = new Date().toLocaleTimeString('default', { hour: '2-digit', minute: '2-digit' });
+
     topBlock.innerHTML = `    
     <div class="city_time"> 
     <span>${data.city.name}</span>
-    <span>${date}</span>
+    <span>${currentTime}</span>
     </div>
     <div class="weather">
     <img src="${iconUrl}">
     <span>${currentWeather.weather[0].main}</span>
-    <span>${currentWeather.main.temp} °C</span>
+    <span>${Math.round(currentWeather.main.temp)} °C</span>
     </div>
     <div class="wind_speed"> 
     <span>Speed</span>
@@ -33,19 +33,20 @@ function addWeather(){
 
 function showWeatherInfo(forecast){
 
-    const forecastDate = new Date(forecast.dt * 1000).toLocaleDateString('ru-RU');
+    const forecastDate = new Date(forecast.dt * 1000).toISOString().split('T')[0];
+    const forecastTime = new Date(forecast.dt * 1000).toLocaleTimeString('ru-RU');
     const forecastIconCode = forecast.weather[0].icon;
     const forecastIconUrl = `https://openweathermap.org/img/wn/${forecastIconCode}@2x.png`;
-
+    
     const weatherDiv = document.createElement("div");
     weatherDiv.classList.add("past_weather");
     weatherDiv.innerHTML = `
-    <div>
+    <div class="date_time">
     <span>${forecastDate}</span>
-    <span></span>
+    <span>${forecastTime}</span>
     </div>
     <img src="${forecastIconUrl}">
-    <span>${forecast.main.temp} °C</span>
+    <span>${Math.round(forecast.main.temp)} °C</span>
     `;
     bottomBlock.appendChild(weatherDiv);
 }
